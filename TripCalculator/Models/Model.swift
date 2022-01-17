@@ -7,6 +7,7 @@
 
 import Foundation
 import SwiftUI
+import FirebaseAuth
 
 class UserAuth: ObservableObject {
     @Published var isLoggedin: Bool = false

@@ -6,6 +6,7 @@
 //
 
 import SwiftUI
+import FirebaseAuth
 
 class LoginPageModel: ObservableObject {
     
@@ -26,18 +27,34 @@ class LoginPageModel: ObservableObject {
     // Login Call
     func Login() {
         withAnimation {
+            Auth.auth().signIn(withEmail: email, password: password) { [weak self] authResult, error in
+                guard self != nil else { return }
+                
+              // ...
+            }
             log_Status = true
         }
     }
     
     func Logout() {
         withAnimation {
+            let firebaseAuth = Auth.auth()
+        do {
+          try firebaseAuth.signOut()
+        } catch let signOutError as NSError {
+          print("Error signing out: %@", signOutError)
+        }
+          
             log_Status = false
         }
     }
     
     func Register() {
         withAnimation {
+            Auth.auth().createUser(withEmail: email, password: password) { authResult, error in
+              // ...
+                print("Error has occured: \(String(describing: error))")
+            }
             log_Status = true
         }
     }
