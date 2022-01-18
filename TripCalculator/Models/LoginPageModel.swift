@@ -64,7 +64,11 @@ class LoginPageModel: ObservableObject {
     }
     
     func forgotPassword() {
-        
+        Auth.auth().sendPasswordReset(withEmail: email) { error in
+            if let error = error {
+                print("There was an error: \(error)")
+            }
+        }
     }
     
 }
