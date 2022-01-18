@@ -8,12 +8,21 @@
 import SwiftUI
 import FirebaseAuth
 
+let actionCodeSettings = ActionCodeSettings()
+
 class LoginPageModel: ObservableObject {
+    
+    // Firebase Property
+    let auth = Auth.auth()
     
     //Login Properties
     @Published var email: String = ""
     @Published var password: String = ""
     @Published var showPassword: Bool = false
+    var isSignedIn: Bool {
+        return auth.currentUser != nil
+    }
+    @Published var signedIn = false
     
     // Register Properties
     @Published var registerUser: Bool = false
@@ -25,14 +34,18 @@ class LoginPageModel: ObservableObject {
     @AppStorage("log_Status") var log_Status: Bool = false
     
     // Login Call
-    func Login() {
+    func Login(email: String, password: String) {
         withAnimation {
-            Auth.auth().signIn(withEmail: email, password: password) { [weak self] authResult, error in
-                guard self != nil else { return }
+            Auth.auth().signIn(withEmail: email, password: password) { [weak self] result, error in
+                guard result != nil, error == nil else { return }
                 
-              // ...
+                DispatchQueue.main.async {
+                    // Success
+                    self?.signedIn = true
+                    self?.log_Status = true
+                }
             }
-            log_Status = true
+//            log_Status = true
         }
     }
     
@@ -52,8 +65,6 @@ class LoginPageModel: ObservableObject {
     func Register() {
         withAnimation {
             Auth.auth().createUser(withEmail: email, password: password) { authResult, error in
-              // ...
-                print("Error has occured: \(String(describing: error))")
             }
             log_Status = true
         }

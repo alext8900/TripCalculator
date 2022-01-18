@@ -21,8 +21,6 @@
 		D5F67D6F2795CD72004BEF9C /* FirebaseStorage in Frameworks */ = {isa = PBXBuildFile; productRef = D5F67D6E2795CD72004BEF9C /* FirebaseStorage */; };
 		D5F67D712795CD72004BEF9C /* FirebaseStorageCombine-Community in Frameworks */ = {isa = PBXBuildFile; productRef = D5F67D702795CD72004BEF9C /* FirebaseStorageCombine-Community */; };
 		D5F67D732795CD72004BEF9C /* FirebaseStorageSwift-Beta in Frameworks */ = {isa = PBXBuildFile; productRef = D5F67D722795CD72004BEF9C /* FirebaseStorageSwift-Beta */; };
-		FA2B91E7275D237900C57750 /* SignInWithAppleViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA2B91E6275D237900C57750 /* SignInWithAppleViewModel.swift */; };
-		FA2B91E9275D285A00C57750 /* Keychain.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA2B91E8275D285A00C57750 /* Keychain.swift */; };
 		FA2B91ED275D43C700C57750 /* MainView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA2B91EC275D43C700C57750 /* MainView.swift */; };
 		FA3A38FD275D4E2200615753 /* Home.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA3A38FC275D4E2200615753 /* Home.swift */; };
 		FA3A38FF275D4F5300615753 /* Profile.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA3A38FE275D4F5300615753 /* Profile.swift */; };
@@ -42,8 +40,6 @@
 
 /* Begin PBXFileReference section */
 		D5F67D572795CC5F004BEF9C /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
-		FA2B91E6275D237900C57750 /* SignInWithAppleViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignInWithAppleViewModel.swift; sourceTree = "<group>"; };
-		FA2B91E8275D285A00C57750 /* Keychain.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Keychain.swift; sourceTree = "<group>"; };
 		FA2B91EC275D43C700C57750 /* MainView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainView.swift; sourceTree = "<group>"; };
 		FA3A38FC275D4E2200615753 /* Home.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Home.swift; sourceTree = "<group>"; };
 		FA3A38FE275D4F5300615753 /* Profile.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Profile.swift; sourceTree = "<group>"; };
@@ -106,8 +102,6 @@
 		FA2B91EB275D42E900C57750 /* Models */ = {
 			isa = PBXGroup;
 			children = (
-				FA2B91E6275D237900C57750 /* SignInWithAppleViewModel.swift */,
-				FA2B91E8275D285A00C57750 /* Keychain.swift */,
 				FA938F96275BCFB400305270 /* Model.swift */,
 				FA3A3904275D61E800615753 /* LoginPageModel.swift */,
 			);
@@ -264,8 +258,6 @@
 				FAC17F6C275BC52600D33594 /* SignInWithAppleButton.swift in Sources */,
 				FA3A3905275D61E800615753 /* LoginPageModel.swift in Sources */,
 				FA938F97275BCFB400305270 /* Model.swift in Sources */,
-				FA2B91E7275D237900C57750 /* SignInWithAppleViewModel.swift in Sources */,
-				FA2B91E9275D285A00C57750 /* Keychain.swift in Sources */,
 				FA83B33F2765678F00641B0C /* HomeViewButton.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
