@@ -34,34 +34,28 @@ class LoginPageModel: ObservableObject {
     
     // Login Call
     func Login(email: String, password: String) {
-        withAnimation {
-            Auth.auth().signIn(withEmail: email, password: password) { [weak self] result, error in
-                guard result != nil, error == nil else { return }
-                DispatchQueue.main.async {
-                    // Success
-                    
-                    self?.signedIn = true
-                    self?.log_Status = true
-                }
+        Auth.auth().signIn(withEmail: email, password: password) { [weak self] result, error in
+            guard result != nil, error == nil else { return }
+            withAnimation {
+                self?.log_Status = true
+                self?.signedIn = true
             }
-//            log_Status = true
         }
     }
     
     func Logout() {
         withAnimation {
             let firebaseAuth = Auth.auth()
-        do {
-          try firebaseAuth.signOut()
-        } catch let signOutError as NSError {
-          print("Error signing out: %@", signOutError)
-        }
-          
-            log_Status = false
+            do {
+                try firebaseAuth.signOut()
+                log_Status = false
+            } catch let signOutError as NSError {
+                print("Error signing out: %@", signOutError)
+            }
         }
     }
     
-    func Register() {
+    func Register(email: String, password: String) {
         withAnimation {
             Auth.auth().createUser(withEmail: email, password: password) { authResult, error in
             }

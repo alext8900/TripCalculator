@@ -128,7 +128,7 @@ struct NewLogin: View {
                         Button {
                             DispatchQueue.main.async {
                                 if loginData.registerUser {
-                                    loginData.Register()
+                                    loginData.Register(email: loginData.email, password: loginData.password)
                                     showLoader.toggle()
                                 } else {
                                     if loginData.email.isEmpty || loginData.password.isEmpty {
