@@ -11,7 +11,6 @@ import FirebaseAuth
 let actionCodeSettings = ActionCodeSettings()
 
 class LoginPageModel: ObservableObject {
-    
     // Firebase Property
     let auth = Auth.auth()
     
@@ -38,9 +37,9 @@ class LoginPageModel: ObservableObject {
         withAnimation {
             Auth.auth().signIn(withEmail: email, password: password) { [weak self] result, error in
                 guard result != nil, error == nil else { return }
-                
                 DispatchQueue.main.async {
                     // Success
+                    
                     self?.signedIn = true
                     self?.log_Status = true
                 }
