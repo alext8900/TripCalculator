@@ -6,6 +6,7 @@
 //
 
 import SwiftUI
+import FirebaseAuth
 
 struct NewLogin: View {
     @StateObject var loginData: LoginPageModel = LoginPageModel()
@@ -124,16 +125,19 @@ struct NewLogin: View {
                             // Login Button
                             
                             Button {
-                                DispatchQueue.main.asyncAfter(deadline: .now() + 2.0) {
+                                DispatchQueue.main.async {
                                     if loginData.registerUser {
                                         loginData.Register()
                                         showLoader.toggle()
                                     } else {
-                                        loginData.Login()
-                                        showLoader.toggle()
+                                        loginData.Login(email: loginData.email, password: loginData.password)
+//                                        if loginData.signedIn {
+//                                            loginData.Login(email: loginData.email, password: loginData.password)
+//                                            showLoader.toggle()
+                                        
                                     }
                                 }
-                                showLoader.toggle()
+//                               showLoader.toggle()
                                 
                             } label: {
                                 
