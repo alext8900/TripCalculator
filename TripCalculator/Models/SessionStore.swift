@@ -46,22 +46,17 @@ class SessionStore: ObservableObject {
     func Login(email: String, password: String, handler: @escaping AuthDataResultCallback) {
         withAnimation {
             Auth.auth().signIn(withEmail: email, password: password, completion: handler)
-            DispatchQueue.main.asyncAfter(deadline: .now() + 2.0) {
-                self.signedIn.toggle()
-            }
         }
     }
     
-    func Logout() -> Bool {
+    func Logout() {
         withAnimation {
             let firebaseAuth = Auth.auth()
             do {
                 try firebaseAuth.signOut()
                 self.session = nil
-                return true
             } catch let signOutError as NSError {
                 print("Error signing out: %@", signOutError)
-                return false
             }
         }
     }
@@ -88,5 +83,4 @@ class SessionStore: ObservableObject {
             Auth.auth().removeStateDidChangeListener(handle)
         }
     }
-    
 }

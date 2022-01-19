@@ -26,7 +26,6 @@
 		FA3A38FF275D4F5300615753 /* Profile.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA3A38FE275D4F5300615753 /* Profile.swift */; };
 		FA3A3901275D563700615753 /* OnboardingPage.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA3A3900275D563700615753 /* OnboardingPage.swift */; };
 		FA3A3903275D61D000615753 /* NewLogin.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA3A3902275D61D000615753 /* NewLogin.swift */; };
-		FA3A3905275D61E800615753 /* LoginPageModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA3A3904275D61E800615753 /* LoginPageModel.swift */; };
 		FA3A3907275D63FF00615753 /* CustomCorners.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA3A3906275D63FF00615753 /* CustomCorners.swift */; };
 		FA83B33F2765678F00641B0C /* HomeViewButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA83B33E2765678F00641B0C /* HomeViewButton.swift */; };
 		FA8582502762E30200E96EE8 /* HomeViewHeader.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA85824F2762E30200E96EE8 /* HomeViewHeader.swift */; };
@@ -48,7 +47,6 @@
 		FA3A38FE275D4F5300615753 /* Profile.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Profile.swift; sourceTree = "<group>"; };
 		FA3A3900275D563700615753 /* OnboardingPage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OnboardingPage.swift; sourceTree = "<group>"; };
 		FA3A3902275D61D000615753 /* NewLogin.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewLogin.swift; sourceTree = "<group>"; };
-		FA3A3904275D61E800615753 /* LoginPageModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginPageModel.swift; sourceTree = "<group>"; };
 		FA3A3906275D63FF00615753 /* CustomCorners.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomCorners.swift; sourceTree = "<group>"; };
 		FA83B33E2765678F00641B0C /* HomeViewButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeViewButton.swift; sourceTree = "<group>"; };
 		FA85824F2762E30200E96EE8 /* HomeViewHeader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeViewHeader.swift; sourceTree = "<group>"; };
@@ -109,8 +107,8 @@
 		FA2B91EB275D42E900C57750 /* Models */ = {
 			isa = PBXGroup;
 			children = (
+				FADC5CF627972F65007144C4 /* SessionStore.swift */,
 				FA938F96275BCFB400305270 /* Model.swift */,
-				FA3A3904275D61E800615753 /* LoginPageModel.swift */,
 				FADC5CF427972EDF007144C4 /* User.swift */,
 			);
 			path = Models;
@@ -144,7 +142,6 @@
 		FAC03F42274D823B00B7C78E /* TripCalculator */ = {
 			isa = PBXGroup;
 			children = (
-				FADC5CF827972F69007144C4 /* Helpers */,
 				FAA75F06275D94FD00168C20 /* Info.plist */,
 				D5F67D572795CC5F004BEF9C /* GoogleService-Info.plist */,
 				FAC17F6A275BC4DD00D33594 /* TripCalculator.entitlements */,
@@ -164,14 +161,6 @@
 				FAC03F4A274D823C00B7C78E /* Preview Assets.xcassets */,
 			);
 			path = "Preview Content";
-			sourceTree = "<group>";
-		};
-		FADC5CF827972F69007144C4 /* Helpers */ = {
-			isa = PBXGroup;
-			children = (
-				FADC5CF627972F65007144C4 /* SessionStore.swift */,
-			);
-			path = Helpers;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -276,7 +265,6 @@
 				FAC03F44274D823B00B7C78E /* TripCalculatorApp.swift in Sources */,
 				FAC17F6C275BC52600D33594 /* SignInWithAppleButton.swift in Sources */,
 				FADC5CF727972F65007144C4 /* SessionStore.swift in Sources */,
-				FA3A3905275D61E800615753 /* LoginPageModel.swift in Sources */,
 				FA938F97275BCFB400305270 /* Model.swift in Sources */,
 				FA83B33F2765678F00641B0C /* HomeViewButton.swift in Sources */,
 			);

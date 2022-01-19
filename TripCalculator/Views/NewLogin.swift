@@ -149,6 +149,10 @@ struct NewLogin: View {
                             //                            }
                             DispatchQueue.main.async {
                                 if session.registerUser {
+                                    guard !session.email.isEmpty || !session.password.isEmpty else {
+                                        textfieldsEmptyAlert.toggle()
+                                        return
+                                    }
                                     session.Register(email: session.email, password: session.password) { result, error in
                                         guard result != nil, error == nil else {
                                             print(error!.localizedDescription)
@@ -159,6 +163,15 @@ struct NewLogin: View {
                                     }
                                     showLoader.toggle()
                                 } else {
+                                    guard !session.email.isEmpty else {
+                                        textfieldsEmptyAlert.toggle()
+                                        return
+                                    }
+                                    
+                                    guard !session.password.isEmpty else {
+                                        textfieldsEmptyAlert.toggle()
+                                        return
+                                    }
                                     DispatchQueue.main.asyncAfter(deadline: .now() + 1.0) {
                                         session.Login(email: session.email, password: session.password) { result, error in
                                             guard result != nil, error == nil else {

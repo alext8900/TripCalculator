@@ -10,12 +10,12 @@ import SwiftUI
 struct Profile: View {
     @AppStorage("log_Status") var log_Status: Bool = false
     @AppStorage("has_Onboarded") var has_Onboarded: Bool = false
-    @StateObject var loginData: LoginPageModel = LoginPageModel()
+    @EnvironmentObject var session: SessionStore
     
     var body: some View {
         VStack {
             Button {
-                loginData.Logout()
+                self.session.Logout()
             } label: {
                 Text("Logout")
                     .font(.system(size: 30, weight: .semibold, design: .rounded))
