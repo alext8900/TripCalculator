@@ -16,6 +16,8 @@ struct NewLogin: View {
     @State private var shouldAnimate = false
     @State private var showLoader = false
     @State private var textfieldsEmptyAlert = false
+    @State private var isError = false
+    @State private var errorMessage = ""
     
     //MARK: Body
     var body: some View {
@@ -94,18 +96,18 @@ struct NewLogin: View {
                         
                         //MARK: Register re-enter Password
                         if session.registerUser {
+                            CustomTextField(icon: "lock",
+                                            title: "Verify Password",
+                                            hint: "Re-enter Password",
+                                            value: $session.reEnterPassword,
+                                            showPassword: $session.showReEnterPassword)
+                                .padding(.top, 10)
+                            
                             CustomTextField(icon: "person",
                                             title: "Name",
                                             hint: "First name",
                                             value: $session.enterName,
                                             showPassword: .constant(false))
-                                .padding(.top, 10)
-                            
-                            CustomTextField(icon: "lock",
-                                            title: "Re-Enter Password",
-                                            hint: "Verify Password",
-                                            value: $session.reEnterPassword,
-                                            showPassword: $session.showReEnterPassword)
                                 .padding(.top, 10)
                         }
                         
@@ -125,28 +127,6 @@ struct NewLogin: View {
                         //MARK: Login Button
                         
                         Button {
-                            //                            DispatchQueue.main.async {
-                            //                                if session.registerUser {
-                            //                                    session.Register(email: session.email, password: session.password) { authResult, error in
-                            //                                    }
-                            //                                    showLoader.toggle()
-                            //                                } else {
-                            //                                    if session.email.isEmpty || session.password.isEmpty {
-                            //                                        textfieldsEmptyAlert = true
-                            //                                    } else {
-                            //                                        DispatchQueue.main.async {
-                            //                                            session.Login(email: session.email, password: session.password) { result, error in
-                            //                                                guard result != nil, error == nil else {
-                            //                                                    print(error!.localizedDescription)
-                            //                                                    return
-                            //                                                }
-                            //                                                showLoader.toggle()
-                            //                                                session.signedIn.toggle()
-                            //                                            }
-                            //                                        }
-                            //                                    }
-                            //                                }
-                            //                            }
                             DispatchQueue.main.async {
                                 if session.registerUser {
                                     guard !session.email.isEmpty || !session.password.isEmpty else {
@@ -155,6 +135,8 @@ struct NewLogin: View {
                                     }
                                     session.Register(email: session.email, password: session.password) { result, error in
                                         guard result != nil, error == nil else {
+                                            isError.toggle()
+                                            errorMessage = error?.localizedDescription ?? ""
                                             print(error!.localizedDescription)
                                             return
                                         }
@@ -172,19 +154,31 @@ struct NewLogin: View {
                                         textfieldsEmptyAlert.toggle()
                                         return
                                     }
-                                    DispatchQueue.main.asyncAfter(deadline: .now() + 1.0) {
-                                        session.Login(email: session.email, password: session.password) { result, error in
-                                            guard result != nil, error == nil else {
-                                                print(error!.localizedDescription)
-                                                return
-                                            }
-                                            session.email = ""
-                                            session.password = ""
+                                    session.Login(email: session.email, password: session.password) { result, error in
+                                        guard result != nil, error == nil else {
+                                            isError.toggle()
+                                            errorMessage = error?.localizedDescription ?? ""
+                                            print(error!.localizedDescription)
+                                            return
                                         }
+                                        session.email = ""
+                                        session.password = ""
                                     }
-                                    showLoader.toggle()
-                                    DispatchQueue.main.asyncAfter(deadline: .now() + 2.0) {
+                                    
+                                    if !isError {
+                                        return
+                                    } else {
                                         showLoader.toggle()
+                                    }
+                                    
+                                    DispatchQueue.main.asyncAfter(deadline: .now() + 2.0) {
+                                        if !isError {
+                                            return
+                                        } else {
+                                            showLoader.toggle()
+                                        }
+                                        
+                                        
                                     }
                                     
                                 }
@@ -201,6 +195,7 @@ struct NewLogin: View {
                                 .shadow(color: Color.black.opacity(0.07), radius: 5, x: 5, y: 5)
                         }
                         .alert("Please enter an email address and a password", isPresented: $textfieldsEmptyAlert, actions: {})
+                        .alert(errorMessage, isPresented: $isError, actions: {})
                         .padding(.top, 25)
                         .padding(.horizontal)
                         
