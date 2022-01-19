@@ -10,10 +10,14 @@ import FirebaseAuth
 
 struct NewLogin: View {
     //    @StateObject var loginData: LoginPageModel = LoginPageModel()
+    
+    //MARK: Properties
     @EnvironmentObject var session: SessionStore
     @State private var shouldAnimate = false
     @State private var showLoader = false
     @State private var textfieldsEmptyAlert = false
+    
+    //MARK: Body
     var body: some View {
         VStack {
             
@@ -26,7 +30,7 @@ struct NewLogin: View {
                 .background(
                     ZStack {
                         
-                        // Gradient Circle
+                        //MARK: Gradient Circle
                         LinearGradient(colors: [
                             Color.pink,
                             Color.pink.opacity(0.8),
@@ -58,7 +62,7 @@ struct NewLogin: View {
             
             ScrollView(.vertical, showsIndicators: false) {
                 
-                // Login Page Form
+                //MARK: Login Page Form
                 ZStack {
                     if showLoader {
                         LoadingView()
@@ -72,7 +76,7 @@ struct NewLogin: View {
                             .font(.system(size: 22, weight: .semibold, design: .default))
                             .frame(maxWidth: .infinity, alignment: .leading)
                         
-                        // Custom Text Field
+                        //MARK: Custom TextField
                         
                         CustomTextField(icon: "envelope",
                                         title: "Email",
@@ -88,7 +92,7 @@ struct NewLogin: View {
                                         showPassword: $session.showPassword)
                             .padding(.top, 10)
                         
-                        // Register Reenter Password
+                        //MARK: Register re-enter Password
                         if session.registerUser {
                             CustomTextField(icon: "person",
                                             title: "Name",
@@ -105,7 +109,7 @@ struct NewLogin: View {
                                 .padding(.top, 10)
                         }
                         
-                        // Forgot Password Button...
+                        //MARK: Forgot Password Button
                         Button {
                             session.forgotPassword()
                             
@@ -118,7 +122,7 @@ struct NewLogin: View {
                         .padding(.top, 8)
                         .frame(maxWidth: .infinity, alignment: .leading)
                         
-                        // Login Button
+                        //MARK: Login Button
                         
                         Button {
                             //                            DispatchQueue.main.async {
@@ -154,11 +158,11 @@ struct NewLogin: View {
                                     }
                                 } else {
                                     DispatchQueue.main.asyncAfter(deadline: .now() + 1.0) {
-                                    session.Login(email: session.email, password: session.password) { result, error in
-                                        guard result != nil, error == nil else {
-                                            print(error!.localizedDescription)
-                                            return
-                                        }
+                                        session.Login(email: session.email, password: session.password) { result, error in
+                                            guard result != nil, error == nil else {
+                                                print(error!.localizedDescription)
+                                                return
+                                            }
                                         }
                                     }
                                     showLoader.toggle()
@@ -183,7 +187,7 @@ struct NewLogin: View {
                         .padding(.top, 25)
                         .padding(.horizontal)
                         
-                        // Register User Button
+                        //MARK: Register User Button
                         
                         Button {
                             withAnimation {
@@ -206,7 +210,7 @@ struct NewLogin: View {
             .frame(maxWidth: .infinity, maxHeight: .infinity)
             .background(
                 Color.white
-                // Applying custom corners
+                //MARK: Custom Corners
                     .clipShape(CustomCorners(corners: [.topLeft, .topRight], radius: 25))
                     .ignoresSafeArea()
             )
@@ -234,6 +238,8 @@ struct NewLogin: View {
             session.password = ""
         }
     }
+    
+    //MARK: Functions
     
     @ViewBuilder
     func CustomTextField(icon: String, title: String, hint:
@@ -281,6 +287,8 @@ struct NewLogin: View {
         )
     }
 }
+
+//MARK: Preview
 
 struct NewLogin_Previews: PreviewProvider {
     static var previews: some View {
