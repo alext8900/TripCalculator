@@ -37,8 +37,9 @@ class LoginPageModel: ObservableObject {
         Auth.auth().signIn(withEmail: email, password: password) { [weak self] result, error in
             guard result != nil, error == nil else { return }
             withAnimation {
-                self?.log_Status = true
-                self?.signedIn = true
+                DispatchQueue.main.async {
+                    self?.signedIn = true
+                }
             }
         }
     }
@@ -48,7 +49,6 @@ class LoginPageModel: ObservableObject {
             let firebaseAuth = Auth.auth()
             do {
                 try firebaseAuth.signOut()
-                log_Status = false
             } catch let signOutError as NSError {
                 print("Error signing out: %@", signOutError)
             }

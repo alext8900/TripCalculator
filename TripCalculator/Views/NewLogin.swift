@@ -9,14 +9,15 @@ import SwiftUI
 import FirebaseAuth
 
 struct NewLogin: View {
-    @StateObject var loginData: LoginPageModel = LoginPageModel()
-    @State private var isLoading = false
+    //    @StateObject var loginData: LoginPageModel = LoginPageModel()
+    @EnvironmentObject var session: SessionStore
+    @State private var shouldAnimate = false
     @State private var showLoader = false
     @State private var textfieldsEmptyAlert = false
     var body: some View {
         VStack {
             
-            Text(loginData.registerUser ? "Welcome\nnoobie" : "Welcome\nback")
+            Text(session.registerUser ? "Welcome\nnoobie" : "Welcome\nback")
                 .font(.system(size: 50, weight: .semibold, design: .default))
                 .foregroundColor(.white)
                 .frame(maxWidth: .infinity, alignment: .leading)
@@ -60,20 +61,14 @@ struct NewLogin: View {
                 // Login Page Form
                 ZStack {
                     if showLoader {
-                        Circle()
-                            .trim(from: 0, to: 0.7)
-                            .stroke(Color(UIColor.systemIndigo), lineWidth: 5)
-                            .frame(width: 100, height: 100)
-                            .rotationEffect(Angle(degrees:  isLoading ? 360 : 0))
-                            .animation(Animation.default.repeatForever(autoreverses: false))
-                            .onAppear {
-                                self.isLoading = true
-                            }
+                        LoadingView()
                     }
+                    
+                    
                     
                     VStack(spacing: 15) {
                         
-                        Text(loginData.registerUser ? "Register" : "Login")
+                        Text(session.registerUser ? "Register" : "Login")
                             .font(.system(size: 22, weight: .semibold, design: .default))
                             .frame(maxWidth: .infinity, alignment: .leading)
                         
@@ -82,37 +77,37 @@ struct NewLogin: View {
                         CustomTextField(icon: "envelope",
                                         title: "Email",
                                         hint: "justine@gmail.com",
-                                        value: $loginData.email,
+                                        value: $session.email,
                                         showPassword: .constant(false))
                             .padding(.top, 30)
                         
                         CustomTextField(icon: "lock",
                                         title: "Password",
                                         hint: "Enter Password",
-                                        value: $loginData.password,
-                                        showPassword: $loginData.showPassword)
+                                        value: $session.password,
+                                        showPassword: $session.showPassword)
                             .padding(.top, 10)
                         
                         // Register Reenter Password
-                        if loginData.registerUser {
+                        if session.registerUser {
                             CustomTextField(icon: "person",
                                             title: "Name",
                                             hint: "First name",
-                                            value: $loginData.enterName,
+                                            value: $session.enterName,
                                             showPassword: .constant(false))
                                 .padding(.top, 10)
                             
                             CustomTextField(icon: "lock",
                                             title: "Re-Enter Password",
                                             hint: "Verify Password",
-                                            value: $loginData.reEnterPassword,
-                                            showPassword: $loginData.showReEnterPassword)
+                                            value: $session.reEnterPassword,
+                                            showPassword: $session.showReEnterPassword)
                                 .padding(.top, 10)
                         }
                         
                         // Forgot Password Button...
                         Button {
-                            loginData.forgotPassword()
+                            session.forgotPassword()
                             
                         } label: {
                             
@@ -126,21 +121,51 @@ struct NewLogin: View {
                         // Login Button
                         
                         Button {
+                            //                            DispatchQueue.main.async {
+                            //                                if session.registerUser {
+                            //                                    session.Register(email: session.email, password: session.password) { authResult, error in
+                            //                                    }
+                            //                                    showLoader.toggle()
+                            //                                } else {
+                            //                                    if session.email.isEmpty || session.password.isEmpty {
+                            //                                        textfieldsEmptyAlert = true
+                            //                                    } else {
+                            //                                        DispatchQueue.main.async {
+                            //                                            session.Login(email: session.email, password: session.password) { result, error in
+                            //                                                guard result != nil, error == nil else {
+                            //                                                    print(error!.localizedDescription)
+                            //                                                    return
+                            //                                                }
+                            //                                                showLoader.toggle()
+                            //                                                session.signedIn.toggle()
+                            //                                            }
+                            //                                        }
+                            //                                    }
+                            //                                }
+                            //                            }
                             DispatchQueue.main.async {
-                                if loginData.registerUser {
-                                    loginData.Register(email: loginData.email, password: loginData.password)
-                                    showLoader.toggle()
-                                } else {
-                                    if loginData.email.isEmpty || loginData.password.isEmpty {
-                                        textfieldsEmptyAlert = true
-                                    } else {
-                                        showLoader.toggle()
-                                        DispatchQueue.main.asyncAfter(deadline: .now() + 2.0) {
-                                            loginData.Login(email: loginData.email, password: loginData.password)
-                                            showLoader.toggle()
+                                if session.registerUser {
+                                    session.Register(email: session.email, password: session.password) { result, error in
+                                        guard result != nil, error == nil else {
+                                            print(error!.localizedDescription)
+                                            return
                                         }
-                                        
+                                        showLoader.toggle()
                                     }
+                                } else {
+                                    DispatchQueue.main.asyncAfter(deadline: .now() + 1.0) {
+                                    session.Login(email: session.email, password: session.password) { result, error in
+                                        guard result != nil, error == nil else {
+                                            print(error!.localizedDescription)
+                                            return
+                                        }
+                                        }
+                                    }
+                                    showLoader.toggle()
+                                    DispatchQueue.main.asyncAfter(deadline: .now() + 2.0) {
+                                        showLoader.toggle()
+                                    }
+                                    
                                 }
                             }
                             
@@ -162,12 +187,12 @@ struct NewLogin: View {
                         
                         Button {
                             withAnimation {
-                                loginData.registerUser.toggle()
+                                session.registerUser.toggle()
                             }
                             
                         } label: {
                             
-                            Text(loginData.registerUser ? "Back to login" : "Create Account")
+                            Text(session.registerUser ? "Back to login" : "Create Account")
                                 .font(.system(size: 14, weight: .semibold, design: .default))
                                 .foregroundColor(Color(UIColor.systemIndigo))
                         }
@@ -194,14 +219,19 @@ struct NewLogin: View {
         
         // Clearing data when changes
         // optional
-        .onChange(of: loginData.registerUser) { newValue in
+        .onChange(of: session.registerUser) { newValue in
             
-            loginData.email = ""
-            loginData.password = ""
-            loginData.reEnterPassword = ""
-            loginData.enterName = ""
-            loginData.showPassword = false
-            loginData.showReEnterPassword = false
+            session.email = ""
+            session.password = ""
+            session.reEnterPassword = ""
+            session.enterName = ""
+            session.showPassword = false
+            session.showReEnterPassword = false
+        }
+        
+        .onChange(of: session.signedIn) { newValue in
+            session.email = ""
+            session.password = ""
         }
     }
     

@@ -36,6 +36,9 @@
 		FAC03F48274D823C00B7C78E /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = FAC03F47274D823C00B7C78E /* Assets.xcassets */; };
 		FAC03F4B274D823C00B7C78E /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = FAC03F4A274D823C00B7C78E /* Preview Assets.xcassets */; };
 		FAC17F6C275BC52600D33594 /* SignInWithAppleButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAC17F6B275BC52600D33594 /* SignInWithAppleButton.swift */; };
+		FADC5CF527972EE0007144C4 /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = FADC5CF427972EDF007144C4 /* User.swift */; };
+		FADC5CF727972F65007144C4 /* SessionStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = FADC5CF627972F65007144C4 /* SessionStore.swift */; };
+		FADC5CFA2797BF8F007144C4 /* LoadingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FADC5CF92797BF8F007144C4 /* LoadingView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -58,6 +61,9 @@
 		FAC03F4A274D823C00B7C78E /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
 		FAC17F6A275BC4DD00D33594 /* TripCalculator.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = TripCalculator.entitlements; sourceTree = "<group>"; };
 		FAC17F6B275BC52600D33594 /* SignInWithAppleButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignInWithAppleButton.swift; sourceTree = "<group>"; };
+		FADC5CF427972EDF007144C4 /* User.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
+		FADC5CF627972F65007144C4 /* SessionStore.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SessionStore.swift; sourceTree = "<group>"; };
+		FADC5CF92797BF8F007144C4 /* LoadingView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoadingView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -104,6 +110,7 @@
 			children = (
 				FA938F96275BCFB400305270 /* Model.swift */,
 				FA3A3904275D61E800615753 /* LoginPageModel.swift */,
+				FADC5CF427972EDF007144C4 /* User.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -120,6 +127,7 @@
 		FAC03F37274D823B00B7C78E = {
 			isa = PBXGroup;
 			children = (
+				FADC5CF92797BF8F007144C4 /* LoadingView.swift */,
 				FAC03F42274D823B00B7C78E /* TripCalculator */,
 				FAC03F41274D823B00B7C78E /* Products */,
 			);
@@ -136,6 +144,7 @@
 		FAC03F42274D823B00B7C78E /* TripCalculator */ = {
 			isa = PBXGroup;
 			children = (
+				FADC5CF827972F69007144C4 /* Helpers */,
 				FAA75F06275D94FD00168C20 /* Info.plist */,
 				D5F67D572795CC5F004BEF9C /* GoogleService-Info.plist */,
 				FAC17F6A275BC4DD00D33594 /* TripCalculator.entitlements */,
@@ -155,6 +164,14 @@
 				FAC03F4A274D823C00B7C78E /* Preview Assets.xcassets */,
 			);
 			path = "Preview Content";
+			sourceTree = "<group>";
+		};
+		FADC5CF827972F69007144C4 /* Helpers */ = {
+			isa = PBXGroup;
+			children = (
+				FADC5CF627972F65007144C4 /* SessionStore.swift */,
+			);
+			path = Helpers;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -251,11 +268,14 @@
 				FAC03F46274D823B00B7C78E /* ContentView.swift in Sources */,
 				FA3A38FF275D4F5300615753 /* Profile.swift in Sources */,
 				FA3A3901275D563700615753 /* OnboardingPage.swift in Sources */,
+				FADC5CFA2797BF8F007144C4 /* LoadingView.swift in Sources */,
 				FA3A3907275D63FF00615753 /* CustomCorners.swift in Sources */,
+				FADC5CF527972EE0007144C4 /* User.swift in Sources */,
 				FA3A38FD275D4E2200615753 /* Home.swift in Sources */,
 				FA2B91ED275D43C700C57750 /* MainView.swift in Sources */,
 				FAC03F44274D823B00B7C78E /* TripCalculatorApp.swift in Sources */,
 				FAC17F6C275BC52600D33594 /* SignInWithAppleButton.swift in Sources */,
+				FADC5CF727972F65007144C4 /* SessionStore.swift in Sources */,
 				FA3A3905275D61E800615753 /* LoginPageModel.swift in Sources */,
 				FA938F97275BCFB400305270 /* Model.swift in Sources */,
 				FA83B33F2765678F00641B0C /* HomeViewButton.swift in Sources */,

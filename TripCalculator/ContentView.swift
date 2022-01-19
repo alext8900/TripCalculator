@@ -6,14 +6,21 @@
 //
 
 import SwiftUI
+import FirebaseAuth
 
 struct ContentView: View {
     // Log status
     @AppStorage("log_Status") var log_Status: Bool = false
     @AppStorage("has_Onboarded") var has_Onboarded: Bool = false
+    @EnvironmentObject var session: SessionStore
+    
+    func getUser() {
+        session.listen()
+    }
+    
     var body: some View {
         Group {
-            if log_Status {
+            if (session.session != nil) {
                 MainView()
             } else {
                 switch has_Onboarded {
@@ -21,6 +28,8 @@ struct ContentView: View {
                 case false: OnboardingPage()
                 }
             }
+        }.onAppear {
+            self.getUser()
         }
     }
 }
