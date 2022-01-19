@@ -99,6 +99,7 @@
 				FA83B33E2765678F00641B0C /* HomeViewButton.swift */,
 				FA3A3902275D61D000615753 /* NewLogin.swift */,
 				FA3A3906275D63FF00615753 /* CustomCorners.swift */,
+				FADC5CF92797BF8F007144C4 /* LoadingView.swift */,
 				FAC17F6B275BC52600D33594 /* SignInWithAppleButton.swift */,
 				FA3A3900275D563700615753 /* OnboardingPage.swift */,
 			);
@@ -127,7 +128,6 @@
 		FAC03F37274D823B00B7C78E = {
 			isa = PBXGroup;
 			children = (
-				FADC5CF92797BF8F007144C4 /* LoadingView.swift */,
 				FAC03F42274D823B00B7C78E /* TripCalculator */,
 				FAC03F41274D823B00B7C78E /* Products */,
 			);
