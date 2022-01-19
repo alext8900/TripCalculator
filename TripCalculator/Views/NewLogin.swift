@@ -154,8 +154,10 @@ struct NewLogin: View {
                                             print(error!.localizedDescription)
                                             return
                                         }
-                                        showLoader.toggle()
+                                        session.email = ""
+                                        session.password = ""
                                     }
+                                    showLoader.toggle()
                                 } else {
                                     DispatchQueue.main.asyncAfter(deadline: .now() + 1.0) {
                                         session.Login(email: session.email, password: session.password) { result, error in
@@ -163,6 +165,8 @@ struct NewLogin: View {
                                                 print(error!.localizedDescription)
                                                 return
                                             }
+                                            session.email = ""
+                                            session.password = ""
                                         }
                                     }
                                     showLoader.toggle()

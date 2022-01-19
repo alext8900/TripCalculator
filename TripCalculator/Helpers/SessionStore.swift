@@ -46,6 +46,9 @@ class SessionStore: ObservableObject {
     func Login(email: String, password: String, handler: @escaping AuthDataResultCallback) {
         withAnimation {
             Auth.auth().signIn(withEmail: email, password: password, completion: handler)
+            DispatchQueue.main.asyncAfter(deadline: .now() + 2.0) {
+                self.signedIn.toggle()
+            }
         }
     }
     
@@ -66,6 +69,9 @@ class SessionStore: ObservableObject {
     func Register(email: String, password: String, handler: @escaping AuthDataResultCallback) {
         withAnimation {
             Auth.auth().createUser(withEmail: email, password: password, completion: handler)
+            DispatchQueue.main.asyncAfter(deadline: .now() + 2.0) {
+                self.registerUser.toggle()
+            }
         }
     }
     
