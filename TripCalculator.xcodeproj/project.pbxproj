@@ -26,7 +26,6 @@
 		FA3A38FF275D4F5300615753 /* Profile.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA3A38FE275D4F5300615753 /* Profile.swift */; };
 		FA3A3901275D563700615753 /* OnboardingPage.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA3A3900275D563700615753 /* OnboardingPage.swift */; };
 		FA3A3903275D61D000615753 /* NewLogin.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA3A3902275D61D000615753 /* NewLogin.swift */; };
-		FA3A3905275D61E800615753 /* LoginPageModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA3A3904275D61E800615753 /* LoginPageModel.swift */; };
 		FA3A3907275D63FF00615753 /* CustomCorners.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA3A3906275D63FF00615753 /* CustomCorners.swift */; };
 		FA83B33F2765678F00641B0C /* HomeViewButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA83B33E2765678F00641B0C /* HomeViewButton.swift */; };
 		FA8582502762E30200E96EE8 /* HomeViewHeader.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA85824F2762E30200E96EE8 /* HomeViewHeader.swift */; };
@@ -36,6 +35,9 @@
 		FAC03F48274D823C00B7C78E /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = FAC03F47274D823C00B7C78E /* Assets.xcassets */; };
 		FAC03F4B274D823C00B7C78E /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = FAC03F4A274D823C00B7C78E /* Preview Assets.xcassets */; };
 		FAC17F6C275BC52600D33594 /* SignInWithAppleButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAC17F6B275BC52600D33594 /* SignInWithAppleButton.swift */; };
+		FADC5CF527972EE0007144C4 /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = FADC5CF427972EDF007144C4 /* User.swift */; };
+		FADC5CF727972F65007144C4 /* SessionStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = FADC5CF627972F65007144C4 /* SessionStore.swift */; };
+		FADC5CFA2797BF8F007144C4 /* LoadingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FADC5CF92797BF8F007144C4 /* LoadingView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -45,7 +47,6 @@
 		FA3A38FE275D4F5300615753 /* Profile.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Profile.swift; sourceTree = "<group>"; };
 		FA3A3900275D563700615753 /* OnboardingPage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OnboardingPage.swift; sourceTree = "<group>"; };
 		FA3A3902275D61D000615753 /* NewLogin.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewLogin.swift; sourceTree = "<group>"; };
-		FA3A3904275D61E800615753 /* LoginPageModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginPageModel.swift; sourceTree = "<group>"; };
 		FA3A3906275D63FF00615753 /* CustomCorners.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomCorners.swift; sourceTree = "<group>"; };
 		FA83B33E2765678F00641B0C /* HomeViewButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeViewButton.swift; sourceTree = "<group>"; };
 		FA85824F2762E30200E96EE8 /* HomeViewHeader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeViewHeader.swift; sourceTree = "<group>"; };
@@ -58,6 +59,9 @@
 		FAC03F4A274D823C00B7C78E /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
 		FAC17F6A275BC4DD00D33594 /* TripCalculator.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = TripCalculator.entitlements; sourceTree = "<group>"; };
 		FAC17F6B275BC52600D33594 /* SignInWithAppleButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignInWithAppleButton.swift; sourceTree = "<group>"; };
+		FADC5CF427972EDF007144C4 /* User.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
+		FADC5CF627972F65007144C4 /* SessionStore.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SessionStore.swift; sourceTree = "<group>"; };
+		FADC5CF92797BF8F007144C4 /* LoadingView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoadingView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -93,6 +97,7 @@
 				FA83B33E2765678F00641B0C /* HomeViewButton.swift */,
 				FA3A3902275D61D000615753 /* NewLogin.swift */,
 				FA3A3906275D63FF00615753 /* CustomCorners.swift */,
+				FADC5CF92797BF8F007144C4 /* LoadingView.swift */,
 				FAC17F6B275BC52600D33594 /* SignInWithAppleButton.swift */,
 				FA3A3900275D563700615753 /* OnboardingPage.swift */,
 			);
@@ -102,8 +107,9 @@
 		FA2B91EB275D42E900C57750 /* Models */ = {
 			isa = PBXGroup;
 			children = (
+				FADC5CF627972F65007144C4 /* SessionStore.swift */,
 				FA938F96275BCFB400305270 /* Model.swift */,
-				FA3A3904275D61E800615753 /* LoginPageModel.swift */,
+				FADC5CF427972EDF007144C4 /* User.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -251,12 +257,14 @@
 				FAC03F46274D823B00B7C78E /* ContentView.swift in Sources */,
 				FA3A38FF275D4F5300615753 /* Profile.swift in Sources */,
 				FA3A3901275D563700615753 /* OnboardingPage.swift in Sources */,
+				FADC5CFA2797BF8F007144C4 /* LoadingView.swift in Sources */,
 				FA3A3907275D63FF00615753 /* CustomCorners.swift in Sources */,
+				FADC5CF527972EE0007144C4 /* User.swift in Sources */,
 				FA3A38FD275D4E2200615753 /* Home.swift in Sources */,
 				FA2B91ED275D43C700C57750 /* MainView.swift in Sources */,
 				FAC03F44274D823B00B7C78E /* TripCalculatorApp.swift in Sources */,
 				FAC17F6C275BC52600D33594 /* SignInWithAppleButton.swift in Sources */,
-				FA3A3905275D61E800615753 /* LoginPageModel.swift in Sources */,
+				FADC5CF727972F65007144C4 /* SessionStore.swift in Sources */,
 				FA938F97275BCFB400305270 /* Model.swift in Sources */,
 				FA83B33F2765678F00641B0C /* HomeViewButton.swift in Sources */,
 			);
