@@ -9,7 +9,6 @@ import SwiftUI
 import FirebaseAuth
 
 struct NewLogin: View {
-    //    @StateObject var loginData: LoginPageModel = LoginPageModel()
     
     //MARK: Properties
     @EnvironmentObject var session: SessionStore
@@ -22,7 +21,6 @@ struct NewLogin: View {
     //MARK: Body
     var body: some View {
         VStack {
-            
             Text(session.registerUser ? "Welcome\nnoobie" : "Welcome\nback")
                 .font(.system(size: 50, weight: .semibold, design: .default))
                 .foregroundColor(.white)
@@ -156,31 +154,21 @@ struct NewLogin: View {
                                     }
                                     session.Login(email: session.email, password: session.password) { result, error in
                                         guard result != nil, error == nil else {
-                                            isError.toggle()
+                                            isError = true
+                                            showLoader = false
                                             errorMessage = error?.localizedDescription ?? ""
-                                            print(error!.localizedDescription)
                                             return
                                         }
                                         session.email = ""
                                         session.password = ""
                                     }
                                     
-                                    if !isError {
-                                        return
-                                    } else {
+                                    switch showLoader {
+                                    case isError:
                                         showLoader.toggle()
+                                    default:
+                                        showLoader = false
                                     }
-                                    
-                                    DispatchQueue.main.asyncAfter(deadline: .now() + 2.0) {
-                                        if !isError {
-                                            return
-                                        } else {
-                                            showLoader.toggle()
-                                        }
-                                        
-                                        
-                                    }
-                                    
                                 }
                             }
                             
